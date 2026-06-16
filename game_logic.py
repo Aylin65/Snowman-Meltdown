@@ -1,6 +1,7 @@
 from ascii_art import *
 import random
 
+
 # List of secret words
 WORDS = ["python", "git", "github", "snowman", "meltdown"]
 
@@ -10,7 +11,7 @@ def get_random_word():
     return WORDS[random.randint(0, len(WORDS) - 1)]
 
 def display_game_state(mistakes, secret_word, guessed_letters):
-    # Display the snowman stage for the current number of mistakes.
+    """ Display the snowman stage for the current number of mistakes."""
     print(STAGES[mistakes])
     # Build a display version of the secret word.
     display_word = ""
@@ -22,19 +23,27 @@ def display_game_state(mistakes, secret_word, guessed_letters):
     print("Word: ", display_word)
     print("\n")
 
+
 def play_game():
+    """Function to get the secret word,
+    validate the input, loop to check if letter is in secret word,
+    loop until snowman melted,
+    saved or all letter guessed right """
     secret_word = get_random_word()
-    print(secret_word)
     guessed_letters = []
     mistakes = 0
 
     print("Welcome to Snowman Meltdown!")
     # For now, display the initial game state.
-    display_game_state(mistakes, secret_word, guessed_letters)
     while mistakes < len(STAGES) - 1:
 
         display_game_state(mistakes, secret_word,guessed_letters)
         guess = input("Guess a letter: ").lower()
+
+        if len(guess) != 1 or not guess.isalpha():
+            print("Please enter a single letter.")
+            continue
+
         if guess in secret_word:
             if guess not in guessed_letters:
                 guessed_letters.append(guess)
@@ -56,8 +65,3 @@ def play_game():
         display_game_state(mistakes, secret_word, guessed_letters)
         print("The snowman melted!")
         print(f"The secret wird was : {secret_word} ")
-
-
-
-
-
