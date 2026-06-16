@@ -1,3 +1,4 @@
+"""list of different stages until snowman melts"""
 STAGES = [
      # Stage 0: Full snowman
      """
